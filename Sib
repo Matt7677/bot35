@@ -1,0 +1,17 @@
+@client.command("n")
+
+def n(data):
+
+  bot = "naori"
+
+  msg = data.message
+
+  msg = GoogleTranslator(source='auto', target='en').translate(msg)
+
+  r =requests.get(f"https://api.affiliateplus.xyz/api/chatbot?message={msg}&botname=naori&ownername=Matt").json()["message"]
+
+  resp = GoogleTranslator(source='auto', target='pt').translate(r)
+
+  data.subClient.send_message(message=resp,chatId=data.chatId)
+
+  
